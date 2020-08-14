@@ -92,7 +92,9 @@ class MyTestCase(unittest.TestCase):
         my_sudoku = sudoku()
         my_sudoku.set_sudoku(init_board)
         self.assertTrue(my_sudoku.possible(1, 3, 3))
-        self.assertFalse(my_sudoku.possible(1, 3, 4))
+        self.assertFalse(my_sudoku.possible(3, 1, 8))
+        self.assertFalse(my_sudoku.possible(7, 7, 9))
+        self.assertTrue(my_sudoku.possible(4, 8, 8))
 
 
 if __name__ == '__main__':
