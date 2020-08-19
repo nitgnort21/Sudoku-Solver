@@ -38,46 +38,49 @@ class sudoku():
                 return False
 
         # Checks in the squares
-        
-        if 1 <= y <= 3:
-            if 1 <= x <= 3:
-                i, j = 1, 1
-            elif 4 <= x <= 6:
-                i, j = 1, 4
-            elif 7 <= x <= 9:
-                i, j = 1, 7
-        elif 4 <= y <= 6:
-            if 1 <= x <= 3:
-                i, j = 4, 1
-            elif 4 <= x <= 6:
-                i, j = 4, 4
-            elif 7 <= x <= 9:
-                i, j = 4, 7
-        elif 7 <= y <= 9:
-            if 1 <= x <= 3:
-                i, j = 7, 1
-            elif 4 <= x <= 6:
-                i, j = 7, 4
-            elif 7 <= x <= 9:
-                i, j = 7, 7
 
-        for _ in range(3):
-            for _ in range(3):
-                if self.board[i][j] == number:
+        y0 = y // 3 * 3 # Make sense of this later Trongtin, or else you will hate yourself
+        x0 = x // 3 * 3
+
+        for i in range(3):
+            for j in range(3):
+                if self.board[y0 + i][x0  + j] == number:
                     return False
 
-                try:
-                    j += 1
-                    self.board[i][j]
-                except:
-                    break
-            try:
-                i += 1
-                self.board[i][j]
-            except:
-                break
-
         return True
+
+        # The version of the small brain
+
+        # if 1 <= y <= 3:
+        #     if 1 <= x <= 3:
+        #         i, j = 1, 1
+        #     elif 4 <= x <= 6:
+        #         i, j = 1, 4
+        #     elif 7 <= x <= 9:
+        #         i, j = 1, 7
+        # elif 4 <= y <= 6:
+        #     if 1 <= x <= 3:
+        #         i, j = 4, 1
+        #     elif 4 <= x <= 6:
+        #         i, j = 4, 4
+        #     elif 7 <= x <= 9:
+        #         i, j = 4, 7
+        # elif 7 <= y <= 9:
+        #     if 1 <= x <= 3:
+        #         i, j = 7, 1
+        #     elif 4 <= x <= 6:
+        #         i, j = 7, 4
+        #     elif 7 <= x <= 9:
+        #         i, j = 7, 7
+
+        # for _ in range(2):
+        #     for _ in range(2):
+        #         if self.board[i][j] == number:
+        #             return False
+                
+        #         j += 1
+        #     i += 1
+
 
 
     def solve(self):
@@ -86,15 +89,16 @@ class sudoku():
         and with some cunfusing recursion which I still do not get
         """
 
-        # for column in range(9):
-        #     for row in range(9):
-        #         if self.board[column][row] == 0:
-        #             for number in range(1, 10):
-        #                 if self.possible(column, row, number) == True:
-        #                     self.board[column][row] = number
-        #                     break
-        #                 else:
+        for column in range(9):
+            for row in range(9):
+                if self.board[column][row] == 0:
 
+                    for number in range(1, 10):
+                        if self.possible(column, row, number):
+                            self.board[column][row] = number
+                            self.solve()
+                            self.board[column][row] = 0
+                    
 
 
     def display(self):
