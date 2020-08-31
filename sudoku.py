@@ -99,7 +99,8 @@ class sudoku():
             if self.possible(column, row, number):
                 self.board[column][row] = number
                 self.solve()
-                self.board[column][row] = 0
+                self.board[column][row] = 0       
+        return
                     
 
 
