@@ -86,6 +86,7 @@ class sudoku():
             for row in range(9):
                 if self.board[column][row] == 0:
                     return column, row
+        return None
 
     def solve(self):
         """
@@ -101,9 +102,9 @@ class sudoku():
         #         self.solve()
         #         self.board[column][row] = 0
         # return
-        if self.__find_empty() is None:
+        if self.findEmpty() is None:
             return True  # soduku is solved
-        row, col = self.__find_empty()
+        row, col = self.findEmpty()
 
         for i in range(1, 10):
             # YOUR CODE HERE
