@@ -93,15 +93,22 @@ class sudoku():
         and with some cunfusing recursion which I still do not get
         """
 
-        column, row = self.findEmpty()
+        # column, row = self.findEmpty()
+        #
+        # for number in range(1, 10):
+        #     if self.possible(column, row, number):
+        #         self.board[column][row] = number
+        #         self.solve()
+        #         self.board[column][row] = 0
+        # return
+        if self.__find_empty() is None:
+            return True  # soduku is solved
+        row, col = self.__find_empty()
 
-        for number in range(1, 10):
-            if self.possible(column, row, number):
-                self.board[column][row] = number
-                self.solve()
-                self.board[column][row] = 0       
-        return
-                    
+        for i in range(1, 10):
+            # YOUR CODE HERE
+
+        return False  # soduku is unsolvable
 
 
     def display(self):
